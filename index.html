@@ -1,91 +1,326 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jaqueline JV Design</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaqueline JV Design | Portfolio</title>
+    
+    <!-- Google Fonts: Inter για high-end tech/design αίσθηση -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Variables για εύκολη αλλαγή χρωμάτων */
+        :root {
+            --bg-dark: #09090b;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-pink: #ff007f;
+            --accent-purple: #7000ff;
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
-    header {
-      padding: 90px 20px;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    h1 {
-      font-size: 50px;
-      margin: 0;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    p {
-      font-size: 18px;
-      opacity: 0.85;
-    }
+        /* Laminated Mesh Glow Background (Εφέ γυαλιστερού βάθους) */
+        .bg-glow-1 {
+            position: fixed;
+            top: -10%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-purple);
+            filter: blur(150px);
+            opacity: 0.2;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    .section {
-      padding: 60px 20px;
-    }
+        .bg-glow-2 {
+            position: fixed;
+            bottom: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: var(--accent-pink);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-    .card {
-      background: #1c1c1c;
-      margin: 20px auto;
-      padding: 25px;
-      max-width: 500px;
-      border-radius: 14px;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(9, 9, 11, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 100;
+            padding: 1.5rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #2575fc;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
+        .logo {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-    footer {
-      padding: 25px;
-      font-size: 13px;
-      opacity: 0.6;
-    }
-  </style>
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        header {
+            padding: 12rem 10% 6rem 10%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+        }
+
+        .badge {
+            background: rgba(255, 0, 127, 0.1);
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            color: var(--accent-pink);
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -3px;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+        }
+
+        header h1 span {
+            background: linear-gradient(135deg, var(--accent-pink) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cta-btn {
+            background: #fff;
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 0 rgba(255,255,255,0);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 4rem 10% 10rem 10%;
+        }
+
+        .portfolio-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* Laminated Glass Cards */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Γυαλάδα/Lamination εφέ στο hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(255, 0, 127, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .card .tag {
+            font-size: 0.75rem;
+            color: var(--accent-pink);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 4rem 10%;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; letter-spacing: -1.5px; }
+            .grid { grid-template-columns: 1fr; }
+            nav .nav-links { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
-    <h1>Jaqueline JV Design</h1>
-    <p>Creative Studio • Branding • Web Design</p>
-  </header>
+    <!-- Background Lamination Glows -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
 
-  <div class="section">
-    <div class="card">
-      <h2>About</h2>
-      <p>Minimal & modern design studio focused on clean branding and web experiences.</p>
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">JAQUELINE JV</div>
+        <div class="nav-links">
+            <a href="#work">Έργα</a>
+            <a href="#about">Σχετικά</a>
+            <a href="#contact">Επικοινωνία</a>
+        </div>
+    </nav>
 
-    <div class="card">
-      <h2>Services</h2>
-      <p>Logo Design<br>Website Design<br>Brand Identity</p>
-    </div>
+    <!-- Hero -->
+    <header>
+        <div class="badge">Visual & UX Designer</div>
+        <h1>High-End Design που <span>μαγνητίζει το βλέμμα</span>.</h1>
+        <p>Δημιουργώ προχωρημένες ψηφιακές εμπειρίες, συνδυάζοντας την απόλυτη αισθητική με τη λειτουργικότητα.</p>
+        <a href="#work" class="cta-btn">Δείτε τα Projects</a>
+    </header>
 
-    <div class="card">
-      <h2>Contact</h2>
-      <a class="btn" href="mailto:jackie.vlachou@gmail.com">Email Me</a>
-    </div>
-  </div>
+    <!-- Portfolio Section -->
+    <main class="portfolio-section" id="work">
+        <h2>Επιλεγμένα Έργα</h2>
+        <div class="grid">
+            
+            <!-- Card 1 -->
+            <div class="card">
+                <div class="tag">Creative Direction</div>
+                <h3>Brand Identity</h3>
+                <p>Στρατηγικός σχεδιασμός και premium οπτική ταυτότητα για σύγχρονα brands.</p>
+            </div>
 
-  <footer>
-    © 2026 Jaqueline JV Design
-  </footer>
+            <!-- Card 2 -->
+            <div class="card">
+                <div class="tag">UI/UX Design</div>
+                <h3>Luxury E-Shop</h3>
+                <p>Μοντέρνα εμπειρία e-commerce με minimal αισθητική και laminated λεπτομέρειες.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <div class="tag">Web Design</div>
+                <h3>Creative Portfolio</h3>
+                <p>Ανατρεπτικά layouts και αλληλεπιδράσεις που αναδεικνύουν την καλλιτεχνική φύση.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jaqueline JV Design. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+    </footer>
 
 </body>
 </html>
